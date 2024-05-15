@@ -1,0 +1,24 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - master # Add additional branches if needed
+  pull_request:
+    branches:
+      - main
+      - master # Add additional branches if needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t hello_world .
+
+      - name: Run Docker container
+        run: docker run hello_world
